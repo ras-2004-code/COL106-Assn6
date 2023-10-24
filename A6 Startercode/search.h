@@ -23,22 +23,48 @@ class Sentence{
 
 */
 
+class TrieNode;
+
+class TrieList{
+    public:
+    TrieList* prev;
+    TrieList* next;
+    TrieList* tail;
+    TrieNode* data;
+    TrieList();
+    TrieList(TrieNode* t);
+    ~TrieList();
+};
+
+class SentList{
+public:
+    SentList* prev;
+    SentList* next;
+    SentList* tail;
+    Sentence* data;
+    SentList();
+    SentList(Sentence* t);
+    ~SentList();
+};
+
 class TrieNode{
     public:
-    Sentence* sentence;
+    SentList* sentences;
     TrieNode** children;
+    TrieList** Occurances;
+    int depth;
     TrieNode();
-    TrieNode(Sentence* sent);
+    ~TrieNode();
     void insert(Sentence* sent);
 };
 
 class SearchEngine {
 private:
     // You can add attributes/helper functions here
-    TrieNode* trie_root;
     int size;
 
 public: 
+    TrieNode* trie_root;
     /* Please do not touch the attributes and 
     functions within the guard lines placed below  */
     /* ------------------------------------------- */
